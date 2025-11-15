@@ -8,6 +8,12 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<ISoapService, SoapService>();
 builder.Services.AddHttpClient<SoapService>();
 
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.MimeTypes = ["text/plain", "text/css", "application/javascript", "text/html", "application/json"];
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -22,6 +28,8 @@ var app = builder.Build();
 
 app.UseCors();
 
+app.UseResponseCompression();
+
 app.UseDefaultFiles();
 app.UseStaticFiles(
     new StaticFileOptions
@@ -33,6 +41,7 @@ app.UseStaticFiles(
         }
     }
 );
+
 app.MapControllers();
 
 app.Run();

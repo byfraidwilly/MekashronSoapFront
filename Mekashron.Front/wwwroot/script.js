@@ -112,4 +112,4 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 });
 
 
-setTheme(themes[6]);
+setTheme(themes[0]);
