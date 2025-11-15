@@ -1,5 +1,10 @@
 const themes = [
     {
+        background: "#FFFFFF",  
+        color: "#000000",      
+        primaryColor: "#0F3460"
+    },
+    {
         background: "#1A1A2E",
         color: "#FFFFFF",
         primaryColor: "#0F3460"
@@ -107,4 +112,4 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 });
 
 
-setTheme(themes[0]);
+setTheme(themes[6]);
