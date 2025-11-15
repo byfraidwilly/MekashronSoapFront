@@ -98,9 +98,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         if (data.success) {
             
             const formattedData = JSON.stringify(data.data, null, 2);
-            showToast("Connexion réussie !<br><br><pre>" + formattedData + "</pre>", "success");
+            showToast("Welcome !<br><br><pre>" + formattedData + "</pre>", "success");
         } else {
-            showToast("Erreur : " + (data.data?.ResultMessage ?? "Impossible de se connecter"), "danger");
+            showToast("Error : " + (data.data?.ResultMessage ?? "Login error, check credentials"), "danger");
         }
     })
     .catch(err => console.log( err));
