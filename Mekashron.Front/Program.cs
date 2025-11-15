@@ -27,7 +27,16 @@ var app = builder.Build();
 app.UseCors();
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        OnPrepareResponse = ctx =>
+        {
+            ctx.Context.Response.Headers.Append(
+                "Cache-Control", "public,max-age=31536000,immutable");
+        }
+    }
+);
 app.MapControllers();
 
 app.Run();
