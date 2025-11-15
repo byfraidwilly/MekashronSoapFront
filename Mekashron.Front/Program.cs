@@ -5,6 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 builder.Services.AddScoped<ISoapService, SoapService>();
 builder.Services.AddHttpClient<SoapService>();
 
