@@ -1,0 +1,25 @@
+body {
+    font-family: system-ui, sans-serif;
+}
+
+.card {
+    background: #ffffff;
+}
+
+#message div {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.success {
+    background: #d1f8d1;
+    color: #1a6e1a;
+    border: 1px solid #46a346;
+}
+
+.error {
+    background: #ffd6d6;
+    color: #b30000;
+    border: 1px solid #e60000;
+}
