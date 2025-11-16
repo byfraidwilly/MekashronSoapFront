@@ -5,6 +5,7 @@ WORKDIR /source
 RUN mkdir -p /app/wwwroot/media && \
     mkdir -p /app/umbraco/Data && \
     mkdir -p /app/umbraco/Logs && \
+    chmod -R 777 /app/umbraco/Data && \
     chmod -R 755 /app/wwwroot && \
     chmod -R 755 /app/umbraco
 
@@ -25,7 +26,8 @@ EXPOSE 10000
 RUN mkdir -p /app/wwwroot/media && \
     mkdir -p /app/umbraco/Data && \
     mkdir -p /app/umbraco/Logs && \
+    chmod -R 777 /app/umbraco/Data && \
     chmod -R 755 /app/wwwroot && \
     chmod -R 755 /app/umbraco
-    
+
 ENTRYPOINT ["dotnet", "Mekashron.Front.dll"]
