@@ -1,29 +1,31 @@
 using Mekashron.Front.Models;
 using Mekashron.Front.Services;
 using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Web.Common.Controllers;
 
 namespace Mekashron.Front.Controllers;
 
-
 [ApiController]
-[Route("/api/[controller]")]
-public class AuthController : ControllerBase
+[Route("api/[controller]")]
+public class LoginController : ControllerBase 
 {
     private readonly ISoapService _soapService;
-    private readonly ILogger<AuthController> _logger;
+    private readonly ILogger<LoginController> _logger;
 
-    public AuthController(ISoapService soapService, ILogger<AuthController> logger)
+    public LoginController(
+        ISoapService soapService, 
+        ILogger<LoginController> logger)
     {
         _soapService = soapService;
         _logger = logger;
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequest request)
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)  // ← Ajoutez [FromBody]
     {
         if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
         {
-            return Ok(new
+            return BadRequest(new  // ← Utilisez BadRequest au lieu de Ok
             {
                 success = false,
                 message = "Email et mot de passe requis"
@@ -46,7 +48,7 @@ public class AuthController : ControllerBase
         }
 
         _logger.LogWarning("Login failed for {Email}", request.Email);
-        return Ok(new
+        return Unauthorized(new  // ← Utilisez Unauthorized
         {
             success = false,
             message = "Email ou mot de passe incorrect"

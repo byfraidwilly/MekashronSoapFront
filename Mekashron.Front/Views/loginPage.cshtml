@@ -1,3 +1,10 @@
+﻿
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +13,9 @@
     <meta name="description" content="Secure login page allowing users to access their account via the SOAP API.">
     <title>Login - SOAP API</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="preload" href="./bootstrap/bootstrap.min.css" as="style">
-    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="preload" href="~/bootstrap/bootstrap.min.css" as="style">
+    <link rel="stylesheet" href="~/bootstrap/bootstrap.min.css">
 </head>
 
 <body>
@@ -22,7 +29,7 @@
             <div class="form-container">
 
                 <img 
-                    src="./images/illustration-min.png" 
+                    src="~/media/images/illustration-min.png" 
                     alt="illustration" fetchpriority="high"
                     class="illustration"
                 />
@@ -91,8 +98,8 @@
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050" id="toast-container"></div>
     </section>
 
-    <script src="./bootstrap/bootstrap.min.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="~/bootstrap/bootstrap.min.js" defer></script>
+    <script src="~/js/login.js" defer></script>
 </body>
 
 </html>

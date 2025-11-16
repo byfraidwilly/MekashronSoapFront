@@ -1,9 +1,12 @@
-
 using Mekashron.Front.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.CreateUmbracoBuilder()
+    .AddBackOffice()
+    .AddWebsite()
+    .AddComposers()
+    .Build();
 
 builder.Services.AddScoped<ISoapService, SoapService>();
 builder.Services.AddHttpClient<SoapService>();
@@ -24,27 +27,24 @@ builder.Services.AddCors(options =>
     });
 });
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
-app.UseCors();
+await app.BootUmbracoAsync();
+
+app.UseHttpsRedirection();
 
 app.UseResponseCompression();
 
-app.UseDefaultFiles();
-app.UseStaticFiles(
-    new StaticFileOptions
+app.UseUmbraco()
+    .WithMiddleware(u =>
     {
-        OnPrepareResponse = ctx =>
-        {
-            ctx.Context.Response.Headers.Append(
-                "Cache-Control", "public,max-age=31536000,immutable");
-        }
-    }
-);
+        u.UseBackOffice();
+        u.UseWebsite();
+    })
+    .WithEndpoints(u =>
+    {
+        u.UseBackOfficeEndpoints();
+        u.UseWebsiteEndpoints();
+    });
 
-app.MapControllers();
-
-app.Run();
-
-
-
+await app.RunAsync();
