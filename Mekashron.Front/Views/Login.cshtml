@@ -1,0 +1,104 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure login page allowing users to access their account via the SOAP API.">
+    <title>Login - SOAP API</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="./bootstrap/bootstrap.min.css" as="style">
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="login-container">
+
+            <div class="circle circle-one"></div>
+
+            <div class="form-container">
+
+                <img 
+                    src="/media/images/illustration-min.png" 
+                    alt="illustration" fetchpriority="high"
+                    class="illustration"
+                />
+
+                <h1 class="opacity text-center" id="headerText">LOGIN</h1>
+
+                <form id="loginForm" novalidate>
+
+                    <div id="message" role="alert" aria-live="polite"></div>
+
+                    <div class="mb-3">
+                        <label for="login" class="form-label fw-semibold">Username</label>
+                        <input 
+                            id="login" 
+                            name="login"
+                            class="form-control rounded-3" 
+                            type="email" 
+                            required 
+                            autocomplete="email"
+                            aria-required="true"
+                            aria-describedby="emailHelp"
+                            placeholder="exemple@email.com"
+                        />
+                        <small id="emailHelp" class="form-text text-muted visually-hidden">
+                            Enter your username
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <input 
+                            id="password" 
+                            name="password"
+                            class="form-control rounded-3" 
+                            type="password" 
+                            required 
+                            autocomplete="current-password"
+                            aria-required="true"
+                            aria-describedby="passwordHelp"
+                            placeholder="••••••••"
+                        />
+                        <small id="passwordHelp" class="form-text text-muted visually-hidden">
+                            Enter your password
+                        </small>
+                    </div>
+
+                    <button class="btn btn-primary w-100 rounded-3 fw-semibold opacity" 
+                            type="submit" 
+                            aria-label="Sign in to your account">
+                        Sign In
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="circle circle-two"></div>
+
+        </div>
+
+        <div class="theme-btn-container"></div>
+
+    </main>
+
+    <section id="message" role="alert" aria-live="polite">
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050" id="toast-container"></div>
+    </section>
+
+    <script src="./bootstrap/bootstrap.min.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
