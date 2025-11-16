@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  umbraco:
+    build: .
+    container_name: mekashron-umbraco
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    volumes:
+      # IMPORTANT : Persister la base SQLite et les médias
+      - umbraco-data:/app/umbraco/Data
+      - umbraco-media:/app/wwwroot/media
+      - umbraco-logs:/app/umbraco/Logs
+    restart: unless-stopped
+
+volumes:
+  umbraco-data:
+  umbraco-media:
+  umbraco-logs:
